@@ -1,8 +1,7 @@
-function HomePage({ user }) {
+function HomePage({}) {
   return (
     <div>
       <p>Hello home page</p>
-      <p>Current user = {user}</p>
     </div>
   );
 }
