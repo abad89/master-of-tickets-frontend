@@ -13,7 +13,7 @@ function MyEventContainer({ user }) {
   }, []);
 
     const MyEventsItem = myEventList.map((event) => (
-        <MyEventCard key={event.id} name={event.name} date={event.date} time={event.time} />
+        <MyEventCard key={event.id} event_id={event.id} name={event.name} date={event.date} time={event.time} />
     ))
 
   return (

@@ -1,6 +1,6 @@
-import {useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import MyEventContainer from "./MyEventContainer";
+import MyTicketsContainer from "./MyTicketsContainer";
 function HomePage({ user }) {
 
 
@@ -34,11 +34,12 @@ function HomePage({ user }) {
         </p>
       </div>
       <div>
-        <h3>My Hosted Events:</h3>
+        <h1>My Hosted Events:</h1>
         <MyEventContainer user={user} />
       </div>
       <div>
-        <h3>Events I'm attending:</h3>
+        <h1>Events I'm attending:</h1>
+        <MyTicketsContainer user={user} />
       </div>
     </div>
   );
