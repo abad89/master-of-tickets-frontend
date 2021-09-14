@@ -1,12 +1,8 @@
 import {useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import MyEventContainer from "./MyEventContainer";
 function HomePage({ user }) {
-  // const [eventList, setEventList] = useState([]);
-  // useEffect(() => {
-  //   fetch("http://localhost:4000/events")
-  //     .then((r) => r.json())
-  //     .then(setEventList);
-  // }, []);
+
 
   return (
     <div>
@@ -28,6 +24,7 @@ function HomePage({ user }) {
       </div>
       <div>
         <h3>My Hosted Events:</h3>
+        <MyEventContainer user={user} />
       </div>
       <div>
         <h3>Events I'm attending:</h3>
