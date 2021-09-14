@@ -1,15 +1,14 @@
-import '../App.css';
-import { useState, useEffect } from "react"
-import { Route, Switch } from "react-router-dom"
-import Header from './Header'
-import HomePage from './HomePage'
-import UserSelect from './UserSelect';
-import LoginPage from "./LoginPage"
-import Footer from "./Footer"
+import "../App.css";
+import { useState, useEffect } from "react";
+import { Route, Switch } from "react-router-dom";
+import Header from "./Header";
+import HomePage from "./HomePage";
+import UserSelect from "./UserSelect";
+import CreateEventPage from "./CreateEventPage";
+import Footer from "./Footer";
 
 function App() {
-
-  const [currentUser, setCurrentUser ] = useState();
+  const [currentUser, setCurrentUser] = useState();
   const [userList, setUserList] = useState([]);
   const [loggedIn, setLoggedIn] = useState(true);
 
@@ -42,13 +41,15 @@ function App() {
     setLoggedIn((loggedIn) => !loggedIn);
   }
 
-
   return (
     <div className="App">
       <Header />
       <Switch>
+        <Route exact path="/create-event">
+          <CreateEventPage user={currentUser} />
+        </Route>
         <Route exact path="/">
-        <div className="container">
+          <div className="container">
             {loggedIn ? (
               <UserSelect
                 userList={userList}
@@ -59,7 +60,7 @@ function App() {
               />
             ) : null}
           </div>
-          {loggedIn ? null : <HomePage />}
+          {loggedIn ? null : <HomePage user={currentUser} />}
         </Route>
       </Switch>
       <Footer />
