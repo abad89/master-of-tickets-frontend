@@ -5,6 +5,7 @@ import Header from "./Header";
 import HomePage from "./HomePage";
 import UserSelect from "./UserSelect";
 import CreateEventPage from "./CreateEventPage";
+import FindEventPage from "./FindEventPage";
 import Footer from "./Footer";
 
 function App() {
@@ -47,6 +48,9 @@ function App() {
       <Switch>
         <Route exact path="/create-event">
           <CreateEventPage user={currentUser} />
+        </Route>
+        <Route exact path="/find-event">
+          <FindEventPage user={currentUser} />
         </Route>
         <Route exact path="/">
           <div className="container">

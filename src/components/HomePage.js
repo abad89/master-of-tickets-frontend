@@ -19,6 +19,17 @@ function HomePage({ user }) {
             }}
           >
             Host New Event
+          </Link> or 
+          <Link
+            to={{
+              pathname: "/find-event",
+              state: {
+                user: user,
+
+              },
+            }}
+          >
+            Find Event to Attend
           </Link>
         </p>
       </div>
