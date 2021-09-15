@@ -9,6 +9,7 @@ function UserSelect({
   onAddUser,
 }) {
   // console.log(userList)
+  const [errors, setErrors] = useState([])
 
   const usersItem = userList.map((user) => (
     <UserButtons
@@ -33,20 +34,25 @@ function UserSelect({
     });
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const newUser = {
       username: formData.username,
     };
-    fetch("http://localhost:4000/users", {
+    const response = await fetch("http://localhost:4000/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newUser),
     })
-      .then((r) => r.json())
-      .then(onAddUser(newUser));
+    const data = await response.json()
+    if (response.ok) {
+      onAddUser(data)
+    } else {
+      setErrors(data.errors)
+      console.log(data.errors)
+    }
   }
 
   return (
@@ -54,6 +60,7 @@ function UserSelect({
       <p>
         Please select your username. Go ahead and click it twice until I figure out why it doesn't work the first time.
       </p>
+      <p>{errors}</p>
       <div className={"p-1"}>
         <form onSubmit={handleSubmit}>
           <input
