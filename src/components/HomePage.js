@@ -19,7 +19,7 @@ function HomePage({ user }) {
             }}
           >
             Host New Event
-          </Link> or 
+          </Link> or &nbsp;
           <Link
             to={{
               pathname: "/find-event",

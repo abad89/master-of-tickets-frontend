@@ -9,7 +9,7 @@ import FindEventPage from "./FindEventPage";
 import Footer from "./Footer";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState(null);
   const [userList, setUserList] = useState([]);
   const [loggedIn, setLoggedIn] = useState(true);
 
@@ -24,7 +24,7 @@ function App() {
       handleLogIn();
     }
     setCurrentUser(user);
-    console.log(currentUser);
+    console.log("handleChangeUser", currentUser);
   }
   function handleDeleteUser(userToDelete) {
     const updatedUserList = userList.filter(
