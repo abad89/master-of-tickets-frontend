@@ -1,9 +1,11 @@
+const BASE_URL = process.env.REACT_APP_BASE_URL
+
 function UserButtons({ user, name, id, onChangeUser, onDeleteUser }) {
     function handleSelectClick() {
       onChangeUser(user);
     }
     function handleDeleteClick() {
-      fetch(`http://localhost:4000/users/${id}`, {
+      fetch(BASE_URL + `/users/${id}`, {
         method: "DELETE",
       })
         .then((r) => r.json())

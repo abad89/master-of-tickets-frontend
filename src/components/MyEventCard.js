@@ -1,6 +1,8 @@
 import { useState } from "react"
 import EditEventForm from "./EditEventForm";
 
+const BASE_URL = process.env.REACT_APP_BASE_URL
+
 function MyEventCard({ name, date, time, event_id, onDeleteEvent }) {
     const [hideEditForm, setHideEditForm] = useState(true);
 
@@ -9,7 +11,7 @@ function MyEventCard({ name, date, time, event_id, onDeleteEvent }) {
     }
 
     function handleDeleteClick() {
-        fetch(`http://localhost:4000/events/${event_id}`, {
+        fetch(BASE_URL + `/events/${event_id}`, {
             method: "DELETE",
         })
         .then((r) => r.json())

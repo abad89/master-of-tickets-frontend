@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import MyEventCard from "./MyEventCard";
 
+const BASE_URL = process.env.REACT_APP_BASE_URL
+
 function MyEventContainer({ user }) {
   const [myEventList, setMyEventList] = useState([]);
 
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:4000/users/${user.id}/events`)
+      fetch(BASE_URL + `/users/${user.id}/events`)
         .then((r) => r.json())
         .then(setMyEventList);
     }

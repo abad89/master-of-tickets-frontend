@@ -1,8 +1,10 @@
+const BASE_URL = process.env.REACT_APP_BASE_URL
+
 function EventCard({ name, date, time, host, event_id, user }) {
   function handleAttendClick(e) {
     e.preventDefault();
     const newTicket = { user_id: user.id, event_id: event_id };
-    fetch("http://localhost:4000/tickets/", {
+    fetch(BASE_URL + "/tickets/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

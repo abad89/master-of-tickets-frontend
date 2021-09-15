@@ -8,13 +8,15 @@ import CreateEventPage from "./CreateEventPage";
 import FindEventPage from "./FindEventPage";
 import Footer from "./Footer";
 
+const BASE_URL = process.env.REACT_APP_BASE_URL
+
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [userList, setUserList] = useState([]);
   const [loggedIn, setLoggedIn] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:4000/users")
+    fetch(BASE_URL + "/users")
       .then((r) => r.json())
       .then(setUserList);
   }, []);

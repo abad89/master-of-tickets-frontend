@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 
+
+const BASE_URL = process.env.REACT_APP_BASE_URL
+
+
 function CreateEventPage({ user }) {
   let history = useHistory();
   const [errors, setErrors] = useState([])
@@ -21,7 +25,7 @@ function CreateEventPage({ user }) {
         time: formData.time,
         hosted_by: user.id
     };
-    const response = await fetch("http://localhost:4000/events", {
+    const response = await fetch(`${BASE_URL}/events`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import MyTicketCard from "./MyTicketCard";
 
+const BASE_URL = process.env.REACT_APP_BASE_URL
+
 function MyTicketsContainer({ user }) {
   const [myTicketsList, setMyTicketsList] = useState([]);
 
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:4000/users/${user.id}/tickets`)
+      fetch(BASE_URL + `/users/${user.id}/tickets`)
         .then((r) => r.json())
         .then(setMyTicketsList);
     }

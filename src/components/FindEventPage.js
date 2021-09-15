@@ -2,12 +2,14 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import EventCard from "./EventCard";
 
+const BASE_URL = process.env.REACT_APP_BASE_URL
+
 function FindEventPage({ user }) {
   const [eventsList, setEventsList] = useState([]);
 
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:4000/events`)
+      fetch(BASE_URL + `/events`)
         .then((r) => r.json())
         .then(setEventsList);
     }

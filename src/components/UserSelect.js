@@ -1,6 +1,8 @@
 import { useState } from "react";
 import UserButtons from "./UserButtons.js";
 
+const BASE_URL = process.env.REACT_APP_BASE_URL
+
 function UserSelect({
   userList,
   onChangeUser,
@@ -39,7 +41,7 @@ function UserSelect({
     const newUser = {
       username: formData.username,
     };
-    const response = await fetch("http://localhost:4000/users", {
+    const response = await fetch(BASE_URL + "/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,7 +53,6 @@ function UserSelect({
       onAddUser(data)
     } else {
       setErrors(data.errors)
-      console.log(data.errors)
     }
   }
 
