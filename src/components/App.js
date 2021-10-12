@@ -7,8 +7,9 @@ import UserSelect from "./UserSelect";
 import CreateEventPage from "./CreateEventPage";
 import FindEventPage from "./FindEventPage";
 import Footer from "./Footer";
+import LoadingSpinner from "./LoadingSpinner";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -22,11 +23,9 @@ function App() {
   }, []);
 
   function handleChangeUser(user) {
-    if (currentUser) {
-      handleLogIn();
-    }
+    handleLogIn();
     setCurrentUser(user);
-    console.log("handleChangeUser", currentUser);
+    // console.log("handleChangeUser", currentUser);
   }
   function handleDeleteUser(userToDelete) {
     const updatedUserList = userList.filter(
@@ -55,17 +54,21 @@ function App() {
           <FindEventPage user={currentUser} />
         </Route>
         <Route exact path="/">
-          <div className="container">
-            {loggedIn ? (
-              <UserSelect
-                userList={userList}
-                onChangeUser={handleChangeUser}
-                onChangeHideUserList={handleLogIn}
-                onDeleteUser={handleDeleteUser}
-                onAddUser={handleAddUser}
-              />
-            ) : null}
-          </div>
+          {userList.length ? (
+            <div className="container">
+              {loggedIn ? (
+                <UserSelect
+                  userList={userList}
+                  onChangeUser={handleChangeUser}
+                  onChangeHideUserList={handleLogIn}
+                  onDeleteUser={handleDeleteUser}
+                  onAddUser={handleAddUser}
+                />
+              ) : null}
+            </div>
+          ) : (
+            <LoadingSpinner />
+          )}
           {loggedIn ? null : <HomePage user={currentUser} />}
         </Route>
       </Switch>

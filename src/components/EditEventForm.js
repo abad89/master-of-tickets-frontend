@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom"
 
+const BASE_URL = process.env.REACT_APP_BASE_URL
 
 function EditEventForm({ event_id, name, date, time }) {
   let history = useHistory()
@@ -25,7 +26,7 @@ function EditEventForm({ event_id, name, date, time }) {
           date: formData.date,
           time: formData.time
       };
-      const response = await fetch(`http://localhost:4000/events/${event_id}`, {
+      const response = await fetch(BASE_URL + `/events/${event_id}`, {
           method: "PATCH",
           headers: {
               "Content-Type": "application/json",
@@ -38,7 +39,6 @@ function EditEventForm({ event_id, name, date, time }) {
       history.goBack()
       } else {
         setErrors(data.errors)
-        console.log(data)
       }
   }
 
